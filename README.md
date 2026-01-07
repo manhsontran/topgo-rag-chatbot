@@ -1,136 +1,136 @@
-# 🍽️ TopGo RAG Chatbot
+# TopGo RAG Chatbot
 
-Hệ thống gợi ý nhà hàng thông minh sử dụng RAG (Retrieval-Augmented Generation) với **Ollama Local LLM** - Miễn phí, không giới hạn.
-
----
-
-## ✨ Tính năng
-
-- 🤖 **Chat AI với Ollama** - LLM chạy local, 100% miễn phí
-- 🔍 **Semantic Search** - Tìm kiếm thông minh với embeddings
-- 🎯 **Gợi ý cá nhân hóa** - Dựa trên ngữ cảnh và sở thích
-- 📊 **1891+ nhà hàng** - Dữ liệu crawl từ TopGo.vn (Hà Nội)
-- 🌐 **FastAPI Backend** + 🎨 **Streamlit UI**
-- 🔒 **100% Local** - Không cần API keys, bảo mật tuyệt đối
+Intelligent restaurant recommendation system using RAG (Retrieval-Augmented Generation) with **Ollama Local LLM** - Free and unlimited.
 
 ---
 
-## 🚀 Quick Start
+## Features
 
-### Bước 1: Cài đặt dependencies
+- **AI Chat with Ollama** - Local LLM, 100% free
+- **Semantic Search** - Intelligent search with embeddings
+- **Personalized Recommendations** - Based on context and preferences
+- **1891+ restaurants** - Data crawled from TopGo.vn (Hanoi)
+- **FastAPI Backend** + **Streamlit UI**
+- **100% Local** - No API keys needed, complete privacy
+
+---
+
+## Quick Start
+
+### Step 1: Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Bước 2: Setup Ollama (LLM Local)
+### Step 2: Setup Ollama (Local LLM)
 
 ```bash
-# Download và cài đặt Ollama: https://ollama.ai
-# Windows: Chạy OllamaSetup.exe
+# Download and install Ollama: https://ollama.ai
+# Windows: Run OllamaSetup.exe
 # Mac: brew install ollama
 # Linux: curl -fsSL https://ollama.ai/install.sh | sh
 
-# Pull model (chọn 1 trong các model sau)
-ollama pull qwen2:1.5b      # Model nhẹ, nhanh (1.5GB) ⭐ Khuyến nghị
-ollama pull llama2          # Model lớn hơn (4.7GB)
-ollama pull vinallama       # Model tiếng Việt (2GB)
+# Pull model (choose one of the following models)
+ollama pull qwen2:1.5b      # Lightweight, fast model (1.5GB) - Recommended
+ollama pull llama2          # Larger model (4.7GB)
+ollama pull vinallama       # Vietnamese model (2GB)
 ```
 
-📖 **Hướng dẫn chi tiết:** [docs/SETUP_OLLAMA.md](docs/SETUP_OLLAMA.md)
+**Detailed guide:** [docs/SETUP_OLLAMA.md](docs/SETUP_OLLAMA.md)
 
-### Bước 3: Chạy ứng dụng
+### Step 3: Run application
 
 ```bash
-# Cách 1: Dùng script (Windows)
+# Method 1: Use script (Windows)
 .\start_all.bat
 
-# Cách 2: Chạy trực tiếp
+# Method 2: Run directly
 streamlit run app.py
 ```
 
-Mở trình duyệt: **http://localhost:8501**
+Open browser: **http://localhost:8501**
 
-**Lưu ý:** 
-- ✅ App chạy được ngay cả khi Ollama chưa có (chế độ search-only)
-- 🤖 Để dùng AI chat, cần khởi động Ollama: `ollama serve`
-- 📊 API backend (optional): `python run_api.py`
+**Note:** 
+- App works even without Ollama (search-only mode)
+- To use AI chat, start Ollama: `ollama serve`
+- API backend (optional): `python run_api.py`
 
 ---
 
-## 📁 Cấu trúc Project
+## Project Structure
 
 ```
 topgo-rag-chatbot/
-├── data/                      # 📂 Dữ liệu
-│   ├── raw/                   # Dữ liệu thô crawl được
-│   ├── processed/             # Dữ liệu đã xử lý (JSON)
+├── data/                      # Data
+│   ├── raw/                   # Raw crawled data
+│   ├── processed/             # Processed data (JSON)
 │   └── vector_db/             # ChromaDB vector database
 │
-├── src/                       # 🔧 Source code chính
+├── src/                       # Main source code
 │   ├── api/                   # FastAPI REST API
 │   ├── crawlers/              # Web scraping TopGo.vn
 │   ├── embeddings/            # Vector embeddings & search
 │   ├── llm/                   # Ollama LLM client
 │   └── rag/                   # RAG pipeline & prompts
 │
-├── docs/                      # 📚 Tài liệu
-│   ├── DOCUMENTATION.md       # Tài liệu đầy đủ
-│   ├── SETUP_OLLAMA.md        # Hướng dẫn cài Ollama
-│   └── ...                    # Các tài liệu khác
+├── docs/                      # Documentation
+│   ├── DOCUMENTATION.md       # Complete documentation
+│   ├── SETUP_OLLAMA.md        # Ollama setup guide
+│   └── ...                    # Other docs
 │
-├── scripts/                   # 🛠️ Utility scripts
-│   ├── setup_ollama.bat       # Setup Ollama tự động
+├── scripts/                   # Utility scripts
+│   ├── setup_ollama.bat       # Automatic Ollama setup
 │   └── rebuild_embeddings.py  # Rebuild vector DB
 │
-├── app.py                     # 🎨 Streamlit UI (Main App)
-├── start_all.bat              # 🚀 Khởi động tất cả services
-├── stop_all.bat               # 🛑 Dừng tất cả services
-├── requirements.txt           # 📦 Python dependencies
-├── .env                       # ⚙️ Environment config
-└── README.md                  # 📖 Bạn đang đọc file này
+├── app.py                     # Streamlit UI (Main App)
+├── start_all.bat              # Start all services
+├── stop_all.bat               # Stop all services
+├── requirements.txt           # Python dependencies
+├── .env                       # Environment config
+└── README.md                  # You are reading this file
 ```
 
 ---
 
-## 🎯 Sử dụng
+## Usage
 
-### 1. Khởi động nhanh
+### 1. Quick Start
 
 ```bash
-# Windows: Double-click hoặc command line
+# Windows: Double-click or command line
 .\start_all.bat
 
-# Hoặc chạy trực tiếp
+# Or run directly
 streamlit run app.py
 ```
 
-### 2. Chat với AI
+### 2. Chat with AI
 
 ```
-👤 Bạn: "Tìm nhà hàng Việt Nam bình dân ở Cầu Giấy"
-🤖 AI: Dựa trên yêu cầu của bạn, tôi gợi ý:
-     1. Quán Ăn Ngon - Cầu Giấy
-        📍 123 Đường XYZ
-        💰 Giá: 50k-100k/người
-        ⭐ Phù hợp: 95%
+User: "Find affordable Vietnamese restaurant in Cau Giay"
+AI: Based on your request, I recommend:
+     1. Good Restaurant - Cau Giay
+        Address: 123 XYZ Street
+        Price: 50k-100k/person
+        Match: 95%
 ```
 
-**Chế độ hoạt động:**
-- 🟢 **Ollama ON:** Full AI chat + semantic search
-- 🟡 **Ollama OFF:** Chỉ semantic search (vẫn chính xác)
+**Operating modes:**
+- **Ollama ON:** Full AI chat + semantic search
+- **Ollama OFF:** Semantic search only (still accurate)
 
-### 3. Filter tìm kiếm
+### 3. Search Filters
 
-- **Loại hình:** Nhà hàng, Bar, Karaoke
-- **Quận:** Tây Hồ, Hoàn Kiếm, Cầu Giấy, Ba Đình...
-- **Mức giá:** Bình dân, Trung bình, Cao cấp
+- **Type:** Restaurant, Bar, Karaoke
+- **District:** Tay Ho, Hoan Kiem, Cau Giay, Ba Dinh...
+- **Price Range:** Affordable, Moderate, Premium
 
 ---
 
-## ⚙️ Kiến trúc (Đơn giản)
+## Configuration (Simple)
 
-File `.env`:
+`.env` file:
 
 ```env
 # Ollama Configuration (Local LLM)
@@ -140,7 +140,7 @@ OLLAMA_MODEL=qwen2:1.5b
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Backend
 - **FastAPI** - REST API framework
@@ -158,64 +158,64 @@ OLLAMA_MODEL=qwen2:1.5b
 
 ---
 
-## 📊 Dữ liệu
+## Data
 
-- **1891 địa điểm** từ TopGo.vn
-- **Loại hình:** Nhà hàng, Bar, Karaoke
-- **Khu vực:** Hà Nội (các quận nội thành)
-- **Thông tin:** Tên, địa chỉ, SĐT, giá, mô tả, đánh giá
+- **1891 locations** from TopGo.vn
+- **Types:** Restaurant, Bar, Karaoke
+- **Area:** Hanoi (inner city districts)
+- **Information:** Name, address, phone, price, description, ratings
 
 ---
 
-## 🔧 Development
+## Development
 
-### Crawl dữ liệu mới
+### Crawl new data
 
 ```bash
 python src/crawlers/topgo_crawler.py
 ```
 
-### Tạo lại embeddings
+### Rebuild embeddings
 
 ```bash
 python scripts/rebuild_embeddings.py
 ```
 
-### Xem thống kê project
+### View project statistics
 
 ```bash
 python scripts/project_stats.py
 ```
 
-### Chạy API Backend (Optional)
+### Run API Backend (Optional)
 
 ```bash
 python scripts/run_api.py
-# Hoặc: uvicorn src.api.main:app --reload
+# Or: uvicorn src.api.main:app --reload
 ```
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
-### 1. Lỗi "Ollama connection refused"
+### 1. "Ollama connection refused" error
 
 ```bash
-# Kiểm tra Ollama có chạy không
+# Check if Ollama is running
 curl http://localhost:11434/api/tags
 
-# Nếu không chạy, khởi động lại
+# If not running, restart
 ollama serve  # Linux/Mac
 # Windows: Restart Ollama app
 ```
 
-### 2. Model chưa có
+### 2. Model not available
 
 ```bash
 ollama pull qwen2:1.5b
 ```
 
-### 3. Port 8000 đã dùng
+### 3. Port 8000 already in use
 
 ```bash
 # Windows
@@ -228,20 +228,20 @@ lsof -ti:8000 | xargs kill -9
 
 ---
 
-## � Tài liệu bổ sung
+## Additional Documentation
 
-Xem thêm trong thư mục [docs/](docs/):
+See more in [docs/](docs/) folder:
 
-- 📘 [QUICKSTART_SIMPLE.md](docs/QUICKSTART_SIMPLE.md) - Quickstart 3 bước
-- 🔧 [SETUP_OLLAMA.md](docs/SETUP_OLLAMA.md) - Setup Ollama chi tiết
-- 🎨 [STREAMLIT_LOCAL.md](docs/STREAMLIT_LOCAL.md) - Hướng dẫn Streamlit
-- ⚡ [OPTIMIZATION_DONE.md](docs/OPTIMIZATION_DONE.md) - Tối ưu đã làm
-- 🔨 [RAG_IMPLEMENTATION.md](docs/RAG_IMPLEMENTATION.md) - RAG pipeline
-- 📊 [API_BACKEND_COMPLETE.md](docs/API_BACKEND_COMPLETE.md) - API docs
+- [QUICKSTART_SIMPLE.md](docs/QUICKSTART_SIMPLE.md) - 3-step quickstart
+- [SETUP_OLLAMA.md](docs/SETUP_OLLAMA.md) - Detailed Ollama setup
+- [STREAMLIT_LOCAL.md](docs/STREAMLIT_LOCAL.md) - Streamlit guide
+- [OPTIMIZATION_DONE.md](docs/OPTIMIZATION_DONE.md) - Optimizations completed
+- [RAG_IMPLEMENTATION.md](docs/RAG_IMPLEMENTATION.md) - RAG pipeline
+- [API_BACKEND_COMPLETE.md](docs/API_BACKEND_COMPLETE.md) - API docs
 
 ---
 
-## �📝 To-Do
+## To-Do
 
 - [ ] Add more filters (cuisine type, rating)
 - [ ] Multi-language support
@@ -251,19 +251,19 @@ Xem thêm trong thư mục [docs/](docs/):
 
 ---
 
-## 📄 License
+## License
 
 MIT License
 
 ---
 
-## 👥 Contributors
+## Contributors
 
 - Your Name - Initial work
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - TopGo.vn - Data source
 - Ollama - Local LLM framework
@@ -272,8 +272,8 @@ MIT License
 
 ---
 
-## 📞 Support
+## Support
 
-- 📖 Docs: [SETUP_OLLAMA.md](SETUP_OLLAMA.md)
-- 🐛 Issues: Create an issue on GitHub
-- 💬 Discord: [Ollama Community](https://discord.gg/ollama)
+- Docs: [SETUP_OLLAMA.md](SETUP_OLLAMA.md)
+- Issues: Create an issue on GitHub
+- Discord: [Ollama Community](https://discord.gg/ollama)
