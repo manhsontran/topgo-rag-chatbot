@@ -259,7 +259,7 @@ MIT License
 
 ## Contributors
 
-- Your Name - Initial work
+- Tran Manh Son
 
 ---
 
